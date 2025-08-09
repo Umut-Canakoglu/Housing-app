@@ -40,7 +40,7 @@ def addresslocation(street, city, state, zip_code):
 
 
 def city_data(city):
-    city_input = "city_summary.csv"
+    city_input = "data/city_summary.csv"
     df_city = pd.read_csv(city_input)
     city_dict = {}
     if df_city[df_city['city'] == city]:
@@ -61,14 +61,14 @@ def city_data(city):
 
 def zip_data(zip_code):
     zip_code = zip_code.zfill(5)
-    zip_input = "zip_data.csv"
+    zip_input = "data/zip_data.csv"
     df_zip = pd.read_csv(zip_input)
     zip_dict = dict(zip(df_zip['zip_code'].astype(str).str.zfill(5), df_zip['zip_freq']))
     return zip_dict.get(zip_code, 0)
 
 
 def state_data(state):
-    state_input = "state_data.csv"
+    state_input = "data/state_data.csv"
     df_state = pd.read_csv(state_input)
     state_dict = dict(zip(df_state['state'], df_state['state_median_price']))
     return state_dict.get(state, allMedian)
