@@ -10,10 +10,10 @@ import math
 app = FastAPI()
 rfr_model = joblib.load("rfr_model.pkl")
 
-input_file = 'cleaned_real_estate_data.csv'
-df = pd.read_csv(input_file)
-allMedian = df['price'].median()
-allArea = df['house_size'].median()
+input_file = 'data/all_summary.csv'
+df = pd.read_csv(input_file, index_col=0).iloc[:, 0]
+allMedian = df['median_price']
+allArea = df['median_area']
 allPricePerSqft = allMedian / allArea
 
 class InputData(BaseModel):
